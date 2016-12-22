@@ -1,5 +1,5 @@
 # BlogIT
-Simple blog about IT. I used Spring Framework, Spring Boot, Hibernate, Thymeleaf, Bootstrap, MySQL local database.
+Simple responsive blog about IT. I used Spring Framework, Spring Boot, Hibernate, Thymeleaf, Bootstrap, MySQL local database.
 
 ## Getting Started
 If you want deploy app in your localhost, you have to specify Database url, password and username. I used MySQL, but you can
@@ -40,7 +40,7 @@ cd BlogIT
 ## A few examples of use BlogIT
 
 ### Main Page
-![main page](https://github.com/malinowskij/img/tree/master/BlogIT)
+![main page](https://github.com/malinowskij/img/tree/master/BlogIT/glowna.jpg)
 
 ### Post view
 ![post view](https://github.com/malinowskij/img/blob/master/BlogIT/postInside.jpg)
