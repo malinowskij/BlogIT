@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+<head th:replace="layout::site-head">
+    <meta charset="UTF-8"/>
+    <title>Rejestracja</title>
+</head>
+
+<body>
+    <header th:replace="layout :: site-header"/>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-lg-offset-4">
+
+                <div th:if="${param.exist}">
+                    <div class="alert alert-danger">Użytkownik z podanym loginem już istnieje w bazie!</div>
+                </div>
+
+                <form class="form-group" method="post" th:action="@{/users/register}" th:object="${user}">
+
+                    <div class="errors" th:if="${#fields.hasErrors('*')}">
+                        <div class="alert alert-danger" th:each="err : ${#fields.errors('*')}" th:text="${err}">
+                            Dane wejściowe są niepoprawne, sprawdź formularz.
+                        </div>
+                    </div>
+
+                    <h2 class="form-signin-heading">Rejestracja</h2>
+                    <input type="text" name="firstName" id="firstName" class="form-control" required="true"
+                               th:field="*{firstName}" placeholder="Wprowadź imię"/> <br/>
+                    <input type="text" name="lastName" id="lastName" class="form-control" required="true"
+                               th:field="*{lastName}" placeholder="Wprowadź nazwisko"/> <br/>
+                    <input type="text" name="username" id="username" class="form-control" required="true"
+                                th:field="*{username}" placeholder="Wprowadź login"/> <br/>
+                    <input type="password" name="password" id="password" class="form-control" required="true"
+                                th:field="*{password}" placeholder="Wprowadź hasło"/> <br/>
+
+                    <button class="btn btn-lg btn-primary btn-block" type="submit">Zarejestruj</button>
+                </form>
+                <footer th:replace="layout :: site-footer"/>
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+<head th:replace="layout::site-head">
+    <meta charset="UTF-8"/>
+    <title>Error</title>
+</head>
+
+<body>
+    <header th:replace="layout :: site-header"/>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div th:if="${param.post}" class="alert alert-danger">
+                    Wybrany post nie został znaleziony.
+                </div>
+
+                <div th:if="${param.user}" class="alert alert-danger">
+                    Wybrany użytkownik nie został znaleziony.
+                </div>
+
+                <div th:if="${param.elseErr}" class="alert alert-danger">
+                    Error 404
+                </div>
+
+                <a href="#" th:href="@{/}">Powrót do strony głównej</a>
+            </div>
+            <footer th:replace="layout :: site-footer"/>
+        </div>
+    </div>
+
+
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+
+<head th:replace="layout::site-head">
+    <meta charset="UTF-8"/>
+    <title>Strona uzytkownika</title>
+</head>
+
+<body>
+    <header th:replace="layout :: site-header"/>
+    <div class="container">
+        <div class="row">
+            <h1 class="page-header" th:text="'Użytkownik: ' + ${user.username}"></h1>
+
+            <div sec:authorize="isAuthenticated()">
+                <div sec:authorize="hasAuthority('ROLE_ADMIN')">
+                    <a href="#" th:href="@{/admin/auth/r_redact/{id}/(id=${user.id})}">
+                        <button class="btn btn-md btn-primary">
+                            Nadaj uprawnienia redaktora
+                        </button>
+                    </a>
+                    <a href="#" th:href="@{/admin/auth/rem_redact/{id}/(id=${user.id})}">
+                        <button class="btn btn-md btn-primary">
+                            Odbierz uprawnienia redaktora
+                        </button>
+                    </a>
+                    <a href="#" th:href="@{/admin/deleteUser/{id}/(id=${user.id})}">
+                        <button class="btn btn-md btn-primary">
+                            Usuń użytkownika
+                        </button>
+                    </a>
+                </div>
+            </div>
+            <br/>
+
+            Imię i nazwisko: <span th:text="${user.firstName} + ' ' + ${user.lastName}"/>
+            <h4>Role użytkownika: </h4>
+            <ul>
+                <li th:each="role : ${user.roles}">
+                    <span th:text="${role.authority}"/>
+                </li>
+            </ul>
+
+            <div>
+                <h4>Posty użytkownika: </h4>
+                <ul>
+                    <li th:each="post : ${user.posts}">
+                        <a href="#" th:href="@{/posts/get/{id}/(id=${post.id})}">
+                            <span th:text="${post.title}"/>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <footer th:replace="layout :: site-footer"/>
+        </div>
+    </div>
+
+</body>
+</html>

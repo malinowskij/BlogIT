@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+
+<head th:replace="layout::site-head">
+    <meta charset="UTF-8"/>
+    <title>Logowanie</title>
+</head>
+
+    <body>
+        <div class="container">
+            <header th:replace="layout :: site-header"/>
+            <div sec:authorize="isAuthenticated()">
+                <div class="alert alert-danger">Jesteś już zalogowany!</div>
+                <br/><br/>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-lg-offset-4">
+                    <div th:if="${param.error}" class="alert alert-danger">
+                        Login, bądź hasło, nieprawidłowe!
+                    </div>
+
+                    <div class="alert alert-success" th:if="${param.logout}">
+                        Jesteś wylogowany!
+                    </div>
+
+
+                    <div sec:authorize="!isAuthenticated()">
+                        <form class="form-signin" method="post" th:action="@{/login}">
+                            <h2 class="form-signin-heading">Zaloguj się</h2>
+                            <label class="sr-only" for="username">Login</label>
+                            <input name="username" id="username" class="form-control" placeholder="Wprowadź login"
+                                   required="true" autofocus="" type="text"/>
+                            <br/>
+                            <label class="sr-only" for="password">Hasło</label>
+                            <input id="password" name="password" class="form-control" placeholder="Wprowadź hasło"
+                                   required="true" autofocus="" type="password"/>
+                            <br/>
+                            <button class="btn btn-lg btn-primary btn-block" type="submit">Zaloguj</button>
+                        </form>
+                    </div>
+                    <footer th:replace="layout :: site-footer"/>
+                </div>
+            </div>
+
+        </div>
+    </body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+
+<head th:replace="layout::site-head">
+    <meta charset="UTF-8"/>
+    <title th:text="${post.title}">Post view</title>
+</head>
+
+<body>
+    <header th:replace="layout :: site-header"/>
+
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-8">
+
+                <h1 th:text="${post.title}" class="page-header">
+
+                </h1>
+                <div id="posts">
+                    <small th:text="'by ' + ${post.author.firstName} + ' ' + ${post.author.lastName}"></small>
+                    <small th:text="' ' + ${#dates.format(post.date, 'dd/MM/yyyy')}"></small>
+                    <small th:if="${post.category}" th:remove="tag" th:text="' ' + ${post.category.category}"></small>
+                    <span sec:authorize="isAuthenticated()">
+                         <span sec:authorize="hasAuthority('ROLE_ADMIN')">
+                             <a href="#" th:href="@{/admin/posts/edit/{id}/(id=${post.id})}">
+                                <button class="btn btn-sm btn-primary">Edytuj</button>
+                             </a>
+                             <a href="#" th:href="@{/admin/posts/delete/{id}/(id=${post.id})}">
+                                <button class="btn btn-sm btn-primary">Usuń</button>
+                             </a>
+                         </span>
+                    </span>
+                    <article>
+                        <p class="content" th:utext="${post.body}"></p>
+                    </article>
+                </div>
+
+           </div>
+
+            <div class="col-md-4">
+
+                <div class="well">
+                    <h4>Szukaj</h4>
+
+                    <form method="post" th:action="@{/posts/search}">
+                        <div class="input-group">
+                            <input type="text" name="title" id="title" class="form-control"/>
+                            <span class="input-group-btn">
+                                <button type="submit" class="btn btn-default">
+                                    <span class="glyphicon glyphicon-search"></span>
+                                </button>
+                             </span>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="well">
+                    <h4>Ostatnie wpisy</h4>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <ul class="list-unstyled">
+                                <li th:each="post : ${latest5posts}">
+                                    <a href="#"
+                                       th:href="@{/posts/get/{id}/(id=${post.id})}"
+                                       th:text="${post.title}">Post</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="well">
+                    <h4>Blog IT</h4>
+                    <p>
+                        Blog IT
+                    </p>
+                </div>
+
+            </div>
+            <br/>
+            <br/>
+            <footer th:replace="layout :: site-footer"/>
+         </div>
+    </div>
+
+</body>
+</html>

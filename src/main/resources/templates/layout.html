@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head th:fragment="site-head">
+    <meta charset="UTF-8" />
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/themes/prism.min.css" type="text/css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/plugins/toolbar/prism-toolbar.min.css" type="text/css"/>
+
+    <meta th:include="this :: head" th:remove="tag"/>
+</head>
+
+    <body>
+        <header style="margin-bottom: 70px;" th:fragment="site-header">
+            <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a href="home.html" class="navbar-brand" th:href="@{/}">Strona glowna</a>
+                    </div>
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            <li >
+                                <a href="users/register.html" th:href="@{/users/register}">Rejestracja</a>
+                            </li>
+                            <li sec:authorize="isAuthenticated()">
+                                <a sec:authorize="hasAuthority('ROLE_ADMIN') || hasAuthority('ROLE_REDACTOR')" href="posts/new.html" th:href="@{/posts/create}">Utworz Post</a>
+                            </li>
+                            <li sec:authorize="isAuthenticated()">
+                                <a sec:authorize="hasAuthority('ROLE_ADMIN')" href="users/view.html" th:href="@{/users}">Uzytkownicy</a>
+                            </li>
+                            <li sec:authorize="!isAuthenticated()">
+                                <a href="login.html" th:href="@{/login}">Logowanie</a>
+                            </li>
+                            <li sec:authorize="isAuthenticated()">
+                                <form id="logoutForm" method="post" th:action="@{/logout}">
+                                </form>
+
+                                <a href="javascript:{}"
+                                   onclick="document.getElementById('logoutForm').submit(); return false;">Wyloguj</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <footer th:fragment="site-footer">
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"
+                    integrity="sha384-3ceskX3iaEnIogmQchP8opvBy3Mi7Ce34nWjpBIwVTHfGYWQS9jwHDVRnpKKHJg7"
+                        crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.3.7/js/tether.min.js"
+                    integrity="sha384-XTs3FgkjiBgo8qjEjBk0tGmf3wPrWtA6coPfQDfFEY8AnYJwjalXCiosYRBIBZX8"
+                        crossorigin="anonymous"></script>
+
+            <!-- Latest compiled and minified JavaScript -->
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+                    integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+                    crossorigin="anonymous"></script>
+
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/components/prism-core.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/prism.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/components/prism-sql.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/components/prism-json.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/components/prism-java.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/components/prism-csharp.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/plugins/toolbar/prism-toolbar.min.js"></script>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>&copy; Spring MVC blog</p>
+                </div>
+            </div>
+        </footer>
+    </body>
+</html>

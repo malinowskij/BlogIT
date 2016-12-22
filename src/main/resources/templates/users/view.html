@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+<head th:replace="layout::site-head">
+    <meta charset="UTF-8"/>
+    <title th:text="Uzytkownicy"></title>
+</head>
+
+<body>
+    <header th:replace="layout :: site-header"/>
+    <div class="container">
+        <div class="row">
+            <h1 class="page-header">
+                Lista użytkowników
+            </h1>
+            <div id="users">
+                <ul>
+                    <li class="usersList" th:each="user : ${userList}">
+                        <a href="get.html" th:href="@{/users/get/} + ${user.id}">
+                            <span style="font-size: 18px;" th:text="${user.username}"></span><br/>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <footer th:replace="layout :: site-footer"/>
+        </div>
+    </div>
+
+
+
+</body>
+</html>

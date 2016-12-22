@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head th:replace="layout::site-head">
+    <meta charset="UTF-8" />
+    <title>Edytuj post</title>
+    <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+    <script>tinymce.init({
+        selector:'textarea',
+        plugins : 'advlist autolink link image lists charmap print preview codesample',
+        codesample_languages: [
+            {text: 'HTML/XML', value: 'markup'},
+            {text: 'JavaScript', value: 'javascript'},
+            {text: 'CSS', value: 'css'},
+            {text: 'PHP', value: 'php'},
+            {text: 'Ruby', value: 'ruby'},
+            {text: 'Python', value: 'python'},
+            {text: 'Java', value: 'java'},
+            {text: 'C', value: 'c'},
+            {text: 'C#', value: 'csharp'},
+            {text: 'C++', value: 'cpp'}
+        ],
+        toolbar: 'undo redo | styleselect | bold italic | link image | alignleft aligncenter alignright | codesample',
+        image_dimensions: false,
+        image_class_list: [
+            {title: 'Responsive', value: 'img-responsive'}
+        ]
+    });</script>
+</head>
+
+<body>
+    <header th:replace="layout :: site-header"/>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                <form class="form-group" method="post" th:action="@{/admin/posts/edit}" th:object="${post}">
+                    <div class="errors" th:if="${#fields.hasErrors('*')}">
+                        <div class="alert alert-danger" th:each="err : ${#fields.errors('*')}" th:text="${err}">
+                            Uzupełnij poprawnie formularz!
+                        </div>
+                    </div>
+
+                    <h2 class="form-signin-heading">Edytuj post</h2>
+                    <input th:field="*{id}" type="hidden"/>
+                    <input class="form-control"
+                           type="text" required="true" th:field="*{title}"
+                           id="title" name="title"/> <br/>
+                    <textarea class="form-control" name="body" id="body"
+                              th:field="*{body}"/><br/>
+                    <button class="btn btn-lg btn-primary btn-block"
+                            type="submit">Edytuj wpis</button>
+                </form>
+                <footer th:replace="layout :: site-header"/>
+                </div>
+            </div>
+        </div>
+
+
+</body>
+
+</html>
