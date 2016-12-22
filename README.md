@@ -40,16 +40,16 @@ cd BlogIT
 ## A few examples of use BlogIT
 
 ### Main Page
-![main page](malinowskij/img/blob/master/BlogIT/glowna.jpg)
+![main page](https://github.com/malinowskij/img/tree/master/BlogIT)
 
 ### Post view
-![post view](malinowskij/img/blob/master/BlogIT/postInside.jpg)
+![post view](https://github.com/malinowskij/img/blob/master/BlogIT/postInside.jpg)
 
 ### User view for admin
-![userr view for admin](malinowskij/img/blob/master/BlogIT/userPanel.jpg)
+![userr view for admin](https://github.com/malinowskij/img/blob/master/BlogIT/userPanel.jpg)
 
 ### Responsive example
-![rsponsive](malinowskij/img/blob/master/BlogIT/responsive.jpg)
+![rsponsive](https://github.com/malinowskij/img/blob/master/BlogIT/responsive.jpg)
 
 ## Author
- ** Jakub Malinowski **
+ **Jakub Malinowski**
