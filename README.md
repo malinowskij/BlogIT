@@ -40,7 +40,7 @@ cd BlogIT
 ## A few examples of use BlogIT
 
 ### Main Page
-![main page](https://github.com/malinowskij/img/tree/master/BlogIT/glowna.jpg)
+![main page](https://github.com/malinowskij/img/blob/master/BlogIT/glowna.jpg)
 
 ### Post view
 ![post view](https://github.com/malinowskij/img/blob/master/BlogIT/postInside.jpg)
