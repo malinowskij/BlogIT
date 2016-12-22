@@ -1,5 +1,6 @@
 # BlogIT
 Simple responsive blog about IT. I used Spring Framework, Spring Boot, Hibernate, Thymeleaf, Bootstrap, MySQL local database.
+For security I used Spring Security, and SSL connection for registering and log in. In database stored are hashed password.
 
 ## Getting Started
 If you want deploy app in your localhost, you have to specify Database url, password and username. I used MySQL, but you can
